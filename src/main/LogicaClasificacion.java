@@ -39,7 +39,7 @@ public class LogicaClasificacion {
             if (c=='[' || c=='{' || c=='(') arr.push(c);
             else if ((c==']' && arr.pop()!='[') || (c=='}' && arr.pop()!='{') || (c==')' && arr.pop()!='(')) return false;
         }
-        return true;
+        return arr.isEmpty();
     }
 
     /**
@@ -55,7 +55,7 @@ public class LogicaClasificacion {
         Stack<Integer> aux = new Stack<>();
         while (!pila.isEmpty()) {
             int temp = pila.pop();
-            if (!aux.isEmpty() && aux.peek() < temp) pila.push(aux.pop());
+            while (!aux.isEmpty() && aux.peek() < temp) pila.push(aux.pop());
             aux.push(temp);
         }
         while (!aux.isEmpty()) pila.push(aux.pop());
